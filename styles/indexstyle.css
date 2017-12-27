@@ -29,6 +29,7 @@
 	margin-top: 10px;
 	height: 100%;
 	width: 100%;
+	border-radius: 1%;
 }
 .row .col:first-child {
   padding: 0 !important;
@@ -52,6 +53,11 @@
 }
 
 /*media queries*/
+@media only screen and (max-width: 767px) {
+	/* For mobile and tablet: */
+	#full-img {height: auto;}
+	#half-img {height: 150px;}
+}
 @media only screen and (min-width: 768px) {
     /* For desktop: */
     #website-logo {margin-left: 125px;}
