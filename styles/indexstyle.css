@@ -1,0 +1,58 @@
+/*nav elements*/
+#nav-selector {
+	background: black;
+	opacity: 0.8;
+}
+#website-logo {
+	transition: all 0.3s ease;
+}
+#website-logo:hover { 
+	transition: all 0.3s ease;
+    color: #bdbdbd;
+}
+#tab-items {
+	margin-right: 100px;
+}
+#special-deals-tab {
+	color: #f8bbd0;
+}
+#item-cart {
+	color: #323232;
+}
+
+/*body elements*/
+#full-img {
+	height: 100%;
+	width: 100%;
+}
+#half-img {
+	margin-top: 10px;
+	height: 100%;
+	width: 100%;
+}
+.row .col:first-child {
+  padding: 0 !important;
+}
+
+/*footer elements*/
+#footer-header-text {
+	color: #323232;
+	font-size: 15px;
+	font-weight: bold;
+}
+#footer-sub-text {
+	color: #323232;
+	font-size: 12px;
+}
+#footer-page {
+	background-color: #F2F2F2;
+}
+#footer-trademark {
+	background-color: #F2F2F2;
+}
+
+/*media queries*/
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    #website-logo {margin-left: 125px;}
+}
