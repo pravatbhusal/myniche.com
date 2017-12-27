@@ -91,7 +91,7 @@
 				<div class="row">
 					<div class="col l6 s12">
 						<h5 id="footer-header-text">About</h5>
-						<p id="footer-sub-text">Niche is a drop shipping website that allows for users to purchase 
+						<p id="footer-sub-text">Niche is a service that allows for users to purchase 
 						cheap items for their favorite hobbies, fandoms, and collections.</p>
 						</div>
 						<div class="col l4 offset-l2 s12">
