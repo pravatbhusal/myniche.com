@@ -1,6 +1,6 @@
 <html lang="en">
 	<head>
-		<title>Msoy Niche</title>   
+		<title>Niche</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
 		<link href="styles/indexstyle.css" type="text/css" rel="stylesheet">       
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  	
@@ -55,21 +55,23 @@
 							<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i></a></li>
 							<li><a href="#" class="dropdown-button" id="dropcart-button" data-activates="drop-cart"><i class="material-icons">shopping_cart</i></a></li>
 						</ul>
-						<ul class="side-nav" id="mobile-demo">
-							<li><a href="anime.php" id="niche-item-tab">Anime</a></li>
-							<li><a href="books.php" id="niche-item-tab">Books</a></li>
-							<li><a href="school.php" id="niche-item-tab">School</a></li>
-							<li><a href="sports.php" id="niche-item-tab">Sports</a></li>
-							<li><a href="media.php" id="niche-item-tab">Media</a></li>
-							<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
-							<li><a href="games.php" id="niche-item-tab">Games</a></li>
-							<li><a href="#deals.php" id="niche-item-tab">Special Deals</a></li>
-							<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
-							<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
-						</ul>
 				</div>
 			</nav>
 		</div>
+		
+		<!--mobile sidenav-->
+		<ul class="side-nav" id="mobile-demo">
+			<li><a href="anime.php" id="niche-item-tab">Anime</a></li>
+			<li><a href="books.php" id="niche-item-tab">Books</a></li>
+			<li><a href="school.php" id="niche-item-tab">School</a></li>
+			<li><a href="sports.php" id="niche-item-tab">Sports</a></li>
+			<li><a href="media.php" id="niche-item-tab">Media</a></li>
+			<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
+			<li><a href="games.php" id="niche-item-tab">Games</a></li>
+			<li><a href="#deals.php" id="niche-item-tab">Special Deals</a></li>
+			<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
+			<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
+		</ul>
 	</head>
 	
 	<body>
