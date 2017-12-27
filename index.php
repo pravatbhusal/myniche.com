@@ -61,6 +61,9 @@
 		
 		<!--mobile sidenav-->
 		<ul class="side-nav" id="mobile-demo">
+			<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
+			<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
+			<li><a href="#deals.php" id="niche-item-tab">Special Deals</a></li>
 			<li><a href="anime.php" id="niche-item-tab">Anime</a></li>
 			<li><a href="books.php" id="niche-item-tab">Books</a></li>
 			<li><a href="school.php" id="niche-item-tab">School</a></li>
@@ -68,9 +71,6 @@
 			<li><a href="media.php" id="niche-item-tab">Media</a></li>
 			<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
 			<li><a href="games.php" id="niche-item-tab">Games</a></li>
-			<li><a href="#deals.php" id="niche-item-tab">Special Deals</a></li>
-			<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
-			<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
 		</ul>
 	</head>
 	
