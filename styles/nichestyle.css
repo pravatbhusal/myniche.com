@@ -21,7 +21,15 @@
 }
 
 /*body elements*/
-
+body {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+ }
+main {
+     flex: 1 0 auto;
+}
+ 
 /*footer elements*/
 #footer-header-text {
 	color: #323232;

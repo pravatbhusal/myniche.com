@@ -1,5 +1,6 @@
 <html lang="en">
-	<head>
+<body>
+	<header>
 		<title>Search</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
 		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
@@ -62,9 +63,9 @@
 			<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
 			<li><a href="games.php" id="niche-item-tab">Games</a></li>
 		</ul>
-	</head>
+	</header>
 	
-	<body>
+	<main>
 		<div class="container">
 		<ul class="collection">
 		<?php	
@@ -117,15 +118,15 @@
 				$foundResult = true;
 			}
 		}
-		
-		if($foundResult == false) {
-			echo '<h5>No results found...</h5>';	
-		}
-		
 		?>	
 		</ul>
+		<?php 
+			if($foundResult == false) {
+				echo '<h5>No results found...</h5>';	
+			}
+		?>
 	</div>
-	</body>
+	</main>
 	
 	<footer class="page-footer" id="footer-page">
 		<div class="container">
@@ -159,7 +160,7 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-		
+</body>	
 	<script>
 		//modal, collapseSideNav settings
 		$('.modal').modal();

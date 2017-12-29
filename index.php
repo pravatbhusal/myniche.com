@@ -1,5 +1,6 @@
 <html lang="en">
-	<head>
+<body>
+	<header>
 		<title>Niche</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
 		<link href="styles/indexstyle.css" type="text/css" rel="stylesheet">       
@@ -62,9 +63,9 @@
 			<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
 			<li><a href="games.php" id="niche-item-tab">Games</a></li>
 		</ul>
-	</head>
+	</header>
 	
-	<body>
+	<main>
 		<div class="row">
 		  <div class="col s12"><a href="deals.php"><img src="rsrc/full-img.jpg" id="full-img"></a></div>
 		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img1.jpg" id="half-img"></a></div>
@@ -74,7 +75,7 @@
 		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img5.jpg" id="half-img"></a></div>
 		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img6.jpg" id="half-img"></a></div>
 		</div>
-	</body>
+	</main>
 	
 	<footer class="page-footer" id="footer-page">
 		<div class="container">
@@ -108,7 +109,8 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	
+</body>
+
 	<script>
 		//modal, collapseSideNav settings
 		$('.modal').modal();

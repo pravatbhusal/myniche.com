@@ -8,7 +8,6 @@ An e-commerce website that drop ships a variety of niches.
 - MaterializeCSS (SaSS)
 
 # To-do by Jan. 5th 9AM
-- Search tool
 - Payment method (PayPal)
 - Gross revenue (Provide how much we sold product for, and how many people bought it)
 

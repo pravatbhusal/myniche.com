@@ -1,5 +1,6 @@
 <html lang="en">
-	<head>
+<body>
+	<header>
 		<title>Game Niches</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
 		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
@@ -62,9 +63,9 @@
 			<li><a href="toys.php" id="niche-item-tab">Toys</a></li>
 			<li><a href="games.php" id="niche-item-tab">Games</a></li>
 		</ul>
-	</head>
+	</header>
 	
-	<body>
+	<main>
 		<div class="container">
 		<ul class="collection">
 		<?php	
@@ -87,41 +88,43 @@
 		while($row = mysqli_fetch_array($result)) {
 			$niche[] = $row;
 		}
-		if(count($niche) <= 0) {
-			echo '<h5>No results found...</h5>';	
-		} else {
-			for($i = 0; $i < count($niche); $i++) {
-				$itemId = $niche[$i]['id'];
-				$itemName = $niche[$i]['Item_Name'];
-				$Price = $niche[$i]['Price'];
-				$itemDescription = $niche[$i]['Item_Description'];
-				$itemIcon = $niche[$i]['icon'];
-					echo '
-					<li class="collection-item avatar" style="margin-top: 10px">
-					<div class="row">
-						<div class="col s12 m3">
-						  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
-						</div>
-						<div class="col s12 m9">
-						  <p><b>'.$itemName.'</b></p>
-						  <p style="color: green;">$'.$Price.' USD</p>
-						  Quantity: <input id="quantityText'.$itemId.'" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
-						  <p><a onclick="addCart('.$itemId.')" class="waves-effect waves-light btn" style="background: #323232;">Add to Cart</a></p>
-						  <p style="margin-top: 10px">'.$itemDescription.'</p>
-						</div>
+		
+		for($i = 0; $i < count($niche); $i++) {
+			$itemId = $niche[$i]['id'];
+			$itemName = $niche[$i]['Item_Name'];
+			$Price = $niche[$i]['Price'];
+			$itemDescription = $niche[$i]['Item_Description'];
+			$itemIcon = $niche[$i]['icon'];
+				echo '
+				<li class="collection-item avatar" style="margin-top: 10px">
+				<div class="row">
+					<div class="col s12 m3">
+					  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
 					</div>
-					</li>'; 
-			}
+					<div class="col s12 m9">
+					  <p><b>'.$itemName.'</b></p>
+					  <p style="color: green;">$'.$Price.' USD</p>
+					  Quantity: <input id="quantityText'.$itemId.'" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
+					  <p><a onclick="addCart('.$itemId.')" class="waves-effect waves-light btn" style="background: #323232;">Add to Cart</a></p>
+					  <p style="margin-top: 10px">'.$itemDescription.'</p>
+					</div>
+				</div>
+				</li>'; 
 		}
 		?>	
 		</ul>
+		<?php 
+			if(count($niche) <= 0) {
+				echo '<h5>No results found...</h5>';	
+			}
+		?>
 		<ul class="pagination" align="center">
 			<li id="previousPage"><a id="previousPageHref" href="?page=<?php echo($pageIndex)?>"><i class="material-icons">chevron_left</i></a></li>
 			<li id="currentPage" value="<?php echo($pageIndex +1)?>"><?php echo($pageIndex +1)?></li>
 			<li id="nextPage" class="waves-effect"><a href="?page=<?php echo($pageIndex +2)?>"><i class="material-icons">chevron_right</i></a></li>
 		</ul>
 	</div>
-	</body>
+	</main>
 	
 	<footer class="page-footer" id="footer-page">
 		<div class="container">
@@ -155,7 +158,7 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-		
+</body>	
 	<script>
 		//modal, collapseSideNav settings
 		$('.modal').modal();
