@@ -7,7 +7,7 @@ $dbusername = "msoyniche";
 
 //admin configuration
 $adminEmail = "ecommerce@msoyniche.com";
-$adminPassword = "msoyniche2018";
+$adminPassword = "hidden";
 
 $link = mysqli_connect($host, $sqluser, $sqlpassword, $dbusername);
 ?>
