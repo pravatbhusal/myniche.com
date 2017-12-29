@@ -1,8 +1,8 @@
 <html lang="en">
 	<head>
-		<title>Niche</title>   
+		<title>School Niches</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
-		<link href="styles/indexstyle.css" type="text/css" rel="stylesheet">       
+		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  	
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -43,7 +43,7 @@
 							<li><a href="deals.php" id="special-deals-tab">Special Deals</a></li>
 							<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i></a></li>
 							<li><a href="checkout.php"><i class="material-icons">shopping_cart</i></a></li>
-							<li><label id="cart-number"></label></li>
+							<li><label id="cart-number">0</label></li>
 						</ul>
 				</div>
 			</nav>
@@ -65,15 +65,62 @@
 	</head>
 	
 	<body>
-		<div class="row">
-		  <div class="col s12"><a href="#"><img src="rsrc/full-img.jpg" id="full-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img1.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img2.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img3.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img4.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img5.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img6.jpg" id="half-img"></a></div>
-		</div>
+		<div class="container">
+		<ul class="collection">
+		<?php	
+		include_once("db/dbconnection.php");
+		$niche = array();
+		if(isset($_GET['page'])) {
+			if($_GET['page'] > 0) {
+				$pageIndex = $_GET['page'] - 1;
+			} else {
+				$pageIndex = 0;	
+			}
+		} else {
+			$pageIndex = 0;
+		}
+		
+		$viewItems = ($pageIndex * 15) . "," . ($pageIndex + 15); //get 15 items from the current page
+		$query = "SELECT * FROM school ORDER by id DESC LIMIT " . $viewItems;
+		$result = mysqli_query($link, $query);
+		//iterate through the niche
+		while($row = mysqli_fetch_array($result)) {
+			$niche[] = $row;
+		}
+		if(count($niche) <= 0) {
+			echo '<h5>No results found...</h5>';	
+		} else {
+			for($i = 0; $i < count($niche); $i++) {
+				$itemId = $niche[$i]['id'];
+				$itemName = $niche[$i]['Item_Name'];
+				$Price = $niche[$i]['Price'];
+				$itemDescription = $niche[$i]['Item_Description'];
+				$itemIcon = $niche[$i]['icon'];
+					echo '
+					<li class="collection-item avatar" style="margin-top: 10px">
+					<div class="row">
+						<div class="col s12 m3">
+						  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
+						</div>
+						<div class="col s12 m9">
+						  <p><b>'.$itemName.'</b></p>
+						  <p style="color: green;">$'.$Price.' USD</p>
+						  Quantity: <input id="quantityText" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
+						  <p><a onclick="addCart('.$itemId.')" class="waves-effect waves-light btn" style="background: #323232;">Add to Cart</a></p>
+						  <p style="margin-top: 10px">'.$itemDescription.'</p>
+						</div>
+					</div>
+					</li>'; 
+			}
+		}
+		?>	
+		</ul>
+		<ul class="pagination" align="center">
+			<li id="previousPage"><a id="previousPageHref" href="?page=<?php echo($pageIndex)?>"><i class="material-icons">chevron_left</i></a></li>
+			<li id="currentPage" value="<?php echo($pageIndex +1)?>"><?php echo($pageIndex +1)?></li>
+			<li id="nextPage" class="waves-effect"><a href="?page=<?php echo($pageIndex +2)?>"><i class="material-icons">chevron_right</i></a></li>
+		</ul>
+	</div>
 	</body>
 	
 	<footer class="page-footer" id="footer-page">
@@ -108,7 +155,7 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	
+		
 	<script>
 		//modal, collapseSideNav settings
 		$('.modal').modal();
@@ -128,5 +175,24 @@
 		}
 		
 		updateNumberOfCartItems();
+			
+		//addCart function to add items into the cart
+		function addCart(itemId) {
+			//get the quantity of the item wanting to be purchased
+			var quantity = document.getElementById("quantityText").value;
+			//get the niche name from the URL
+			var niche = (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)).replace(".php", "");
+			document.cookie = niche + "_" + itemId + "=" + quantity;
+			Materialize.toast("Added item into your cart!", 4000);
+			updateNumberOfCartItems();
+		}
+		
+		//if we're on the first page or less, then add certain classes for the previous button
+		if(document.getElementById("currentPage").value <= 1) {
+			document.getElementById("previousPage").className += "disabled";
+			document.getElementById("previousPageHref").removeAttribute("href");
+		} else {
+			document.getElementById("previousPage").className += "waves-effect";
+		}
 	</script>
 </html>

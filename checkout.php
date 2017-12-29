@@ -1,8 +1,8 @@
 <html lang="en">
 	<head>
-		<title>Niche</title>   
+		<title>Toys Niches</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
-		<link href="styles/indexstyle.css" type="text/css" rel="stylesheet">       
+		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  	
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -42,8 +42,6 @@
 							<li><a href="games.php" id="niche-item-tab">Games</a></li>
 							<li><a href="deals.php" id="special-deals-tab">Special Deals</a></li>
 							<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i></a></li>
-							<li><a href="checkout.php"><i class="material-icons">shopping_cart</i></a></li>
-							<li><label id="cart-number"></label></li>
 						</ul>
 				</div>
 			</nav>
@@ -52,7 +50,6 @@
 		<!--mobile sidenav-->
 		<ul class="side-nav" id="mobile-demo">
 			<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
-			<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
 			<li><a href="deals.php" id="niche-item-tab">Special Deals</a></li>
 			<li><a href="anime.php" id="niche-item-tab">Anime</a></li>
 			<li><a href="books.php" id="niche-item-tab">Books</a></li>
@@ -65,15 +62,7 @@
 	</head>
 	
 	<body>
-		<div class="row">
-		  <div class="col s12"><a href="#"><img src="rsrc/full-img.jpg" id="full-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img1.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img2.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img3.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img4.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img5.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="#"><img src="rsrc/half-img6.jpg" id="half-img"></a></div>
-		</div>
+		
 	</body>
 	
 	<footer class="page-footer" id="footer-page">
@@ -113,20 +102,5 @@
 		//modal, collapseSideNav settings
 		$('.modal').modal();
 		$(".button-collapse").sideNav();
-		
-		//get number of cart items within the browser
-		function updateNumberOfCartItems() {
-			var numberOfCartItems = 0;
-			var cookies = document.cookie.split(';');
-			if(cookies == "") {
-				numberOfCartItems = 0;
-			} else {
-				numberOfCartItems = cookies.length;
-			}
-			//set the number of items in the cart
-			document.getElementById('cart-number').innerHTML = numberOfCartItems;
-		}
-		
-		updateNumberOfCartItems();
 	</script>
 </html>
