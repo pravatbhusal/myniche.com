@@ -176,8 +176,19 @@
 			document.getElementById("totalPrice").innerHTML = "Total: $" + totalPrice + " USD";
 			document.getElementById("totalPrice").setAttribute("data-totalPrice", totalPrice);
 			
-			//if cookies are empty, then notify the user
-			if(document.cookie == "") {
+			//get number of cart items within the browser
+			var numberOfCartItems = 0;
+			numberOfCartItems += (document.cookie.split('anime_').length-1);
+			numberOfCartItems += (document.cookie.split('books_').length-1);
+			numberOfCartItems += (document.cookie.split('school_').length-1);
+			numberOfCartItems += (document.cookie.split('sports_').length-1);
+			numberOfCartItems += (document.cookie.split('media_').length-1);
+			numberOfCartItems += (document.cookie.split('toys_').length-1);
+			numberOfCartItems += (document.cookie.split('games_').length-1);
+			numberOfCartItems += (document.cookie.split('deals_').length-1);
+			
+			//if number of cart items are empty, then notify the user
+			if(numberOfCartItems == 0) {
 				var container = document.getElementById("itemContainer");
 				var emptyParagraph = document.createElement("p");
 				var node = document.createTextNode("No items in the checkout...");

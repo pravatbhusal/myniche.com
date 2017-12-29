@@ -119,12 +119,14 @@
 		//get number of cart items within the browser
 		function updateNumberOfCartItems() {
 			var numberOfCartItems = 0;
-			var cookies = document.cookie.split(';');
-			if(cookies == "") {
-				numberOfCartItems = 0;
-			} else {
-				numberOfCartItems = cookies.length;
-			}
+			numberOfCartItems += (document.cookie.split('anime_').length-1);
+			numberOfCartItems += (document.cookie.split('books_').length-1);
+			numberOfCartItems += (document.cookie.split('school_').length-1);
+			numberOfCartItems += (document.cookie.split('sports_').length-1);
+			numberOfCartItems += (document.cookie.split('media_').length-1);
+			numberOfCartItems += (document.cookie.split('toys_').length-1);
+			numberOfCartItems += (document.cookie.split('games_').length-1);
+			numberOfCartItems += (document.cookie.split('deals_').length-1);
 			//set the number of items in the cart
 			document.getElementById('cart-number').innerHTML = numberOfCartItems;
 		}
