@@ -86,7 +86,7 @@
 		}
 		
 		$viewItems = ($pageIndex * 15) . "," . ($pageIndex + 15); //get 15 items from the current page
-		$query = "SELECT * FROM game ORDER by id DESC LIMIT " . $viewItems;
+		$query = "SELECT * FROM games ORDER by id DESC LIMIT " . $viewItems;
 		$result = mysqli_query($link, $query);
 		//iterate through the niche
 		while($row = mysqli_fetch_array($result)) {
