@@ -20,7 +20,7 @@
 		<div class="modal-content">
 				<div class="input-field col s6">
 					<form action="search.php" method="GET">
-						<input placeholder="Search..." autofocus required type="text">
+						<input placeholder="Search..." name="search" autofocus required type="text">
 					</form>
 				</div>
 		</div>
@@ -105,7 +105,7 @@
 						<div class="col s12 m9">
 						  <p><b>'.$itemName.'</b></p>
 						  <p style="color: green;">$'.$Price.' USD</p>
-						  Quantity: <input id="quantityText" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
+						  Quantity: <input id="quantityText'.$itemId.'" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
 						  <p><a onclick="addCart('.$itemId.')" class="waves-effect waves-light btn" style="background: #323232;">Add to Cart</a></p>
 						  <p style="margin-top: 10px">'.$itemDescription.'</p>
 						</div>
@@ -179,7 +179,7 @@
 		//addCart function to add items into the cart
 		function addCart(itemId) {
 			//get the quantity of the item wanting to be purchased
-			var quantity = document.getElementById("quantityText").value;
+			var quantity = document.getElementById("quantityText" + itemId).value;
 			//get the niche name from the URL
 			var niche = (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)).replace(".php", "");
 			document.cookie = niche + "_" + itemId + "=" + quantity;

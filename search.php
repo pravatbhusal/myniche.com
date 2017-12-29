@@ -1,8 +1,8 @@
 <html lang="en">
 	<head>
-		<title>Niche</title>   
+		<title>Search</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
-		<link href="styles/indexstyle.css" type="text/css" rel="stylesheet">       
+		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  	
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -43,7 +43,7 @@
 							<li><a href="deals.php" id="special-deals-tab">Special Deals</a></li>
 							<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i></a></li>
 							<li><a href="checkout.php"><i class="material-icons">shopping_cart</i></a></li>
-							<li><label id="cart-number"></label></li>
+							<li><label id="cart-number">0</label></li>
 						</ul>
 				</div>
 			</nav>
@@ -65,15 +65,66 @@
 	</head>
 	
 	<body>
-		<div class="row">
-		  <div class="col s12"><a href="deals.php"><img src="rsrc/full-img.jpg" id="full-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img1.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img2.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img3.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img4.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img5.jpg" id="half-img"></a></div>
-		  <div class="col s6"><a href="deals.php"><img src="rsrc/half-img6.jpg" id="half-img"></a></div>
-		</div>
+		<div class="container">
+		<ul class="collection">
+		<?php	
+		include_once("db/dbconnection.php");
+		$foundResult = false;
+		
+		//get queries that contain the search string (MySQL is case-insensitive)
+		$search = $_GET['search'];
+		$queryAnime = "SELECT * FROM anime WHERE Item_Name LIKE '%" . $search . "%'";
+		$queryBooks = "SELECT * FROM books WHERE Item_Name LIKE '%" . $search . "%'";
+		$querySchool = "SELECT * FROM school WHERE Item_Name LIKE '%" . $search . "%'";
+		$querySports = "SELECT * FROM sports WHERE Item_Name LIKE '%" . $search . "%'";
+		$queryMedia = "SELECT * FROM media WHERE Item_Name LIKE '%" . $search . "%'";
+		$queryToys = "SELECT * FROM toys WHERE Item_Name LIKE '%" . $search . "%'";
+		$queryGames = "SELECT * FROM games WHERE Item_Name LIKE '%" . $search . "%'";
+		$queryDeals = "SELECT * FROM deals WHERE Item_Name LIKE '%" . $search . "%'";
+		
+		$results = array();
+		$results[] = mysqli_query($link, $queryAnime);
+		$results[] = mysqli_query($link, $queryBooks);
+		$results[] = mysqli_query($link, $querySchool);
+		$results[] = mysqli_query($link, $querySports);
+		$results[] = mysqli_query($link, $queryMedia);
+		$results[] = mysqli_query($link, $queryToys);
+		$results[] = mysqli_query($link, $queryGames);
+		$results[] = mysqli_query($link, $queryDeals);
+		
+		for($i = 0; $i < 8; $i ++) {
+			while($row = mysqli_fetch_array($results[$i])) {	
+				$itemId = $row['id'];
+				$itemName = $row['Item_Name'];
+				$Price = $row['Price'];
+				$itemDescription = $row['Item_Description'];
+				$itemIcon = $row['icon'];
+					echo '
+					<li class="collection-item avatar" style="margin-top: 10px">
+					<div class="row">
+						<div class="col s12 m3">
+						  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
+						</div>
+						<div class="col s12 m9">
+						  <p><b>'.$itemName.'</b></p>
+						  <p style="color: green;">$'.$Price.' USD</p>
+						  Quantity: <input id="quantityText'.$itemId.'" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">
+						  <p><a onclick="addCart('.$itemId.', '.$i.')" class="waves-effect waves-light btn" style="background: #323232;">Add to Cart</a></p>
+						  <p style="margin-top: 10px">'.$itemDescription.'</p>
+						</div>
+					</div>
+					</li>'; 
+				$foundResult = true;
+			}
+		}
+		
+		if($foundResult == false) {
+			echo '<h5>No results found...</h5>';	
+		}
+		
+		?>	
+		</ul>
+	</div>
 	</body>
 	
 	<footer class="page-footer" id="footer-page">
@@ -108,7 +159,7 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	
+		
 	<script>
 		//modal, collapseSideNav settings
 		$('.modal').modal();
@@ -128,5 +179,32 @@
 		}
 		
 		updateNumberOfCartItems();
+			
+		//addCart function to add items into the cart
+		function addCart(itemId, itemTable) {
+			var niche = "";
+			if(itemTable == 0) {
+				niche = "anime";
+			} else if(itemTable == 1) {
+				niche = "books";
+			} else if(itemTable == 2) {
+				niche = "school";
+			} else if(itemTable == 3) {
+				niche = "sports";
+			} else if(itemTable == 4) {
+				niche = "media";
+			} else if(itemTable == 5) {
+				niche = "toys";
+			} else if(itemTable == 6) {
+				niche = "games";
+			} else if(itemTable == 7) {
+				niche = "deals";
+			}
+			//get the quantity of the item wanting to be purchased
+			var quantity = document.getElementById("quantityText" + itemId).value;
+			document.cookie = niche + "_" + itemId + "=" + quantity;
+			Materialize.toast("Added item into your cart!", 4000);
+			updateNumberOfCartItems();
+		}
 	</script>
 </html>

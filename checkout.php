@@ -1,6 +1,6 @@
 <html lang="en">
 	<head>
-		<title>Toys Niches</title>   
+		<title>Checkout</title>   
 		<!--style.css, favcon, googlefont, materializecss-->
 		<link href="styles/nichestyle.css" type="text/css" rel="stylesheet">       
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  	
@@ -20,7 +20,7 @@
 		<div class="modal-content">
 				<div class="input-field col s6">
 					<form action="search.php" method="GET">
-						<input placeholder="Search..." autofocus required type="text">
+						<input placeholder="Search..." name="search" autofocus required type="text">
 					</form>
 				</div>
 		</div>
