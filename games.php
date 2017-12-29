@@ -53,7 +53,7 @@
 		<!--mobile sidenav-->
 		<ul class="side-nav" id="mobile-demo">
 			<li><a href="#search-modal" class="modal-trigger"><i class="material-icons">search</i>Search Niche</a></li>
-			<li><a href="#"><i class="material-icons">shopping_cart</i>Checkout</a></li>
+			<li><a href="checkout.php"><i class="material-icons">shopping_cart</i>Checkout</a></li>
 			<li><a href="deals.php" id="niche-item-tab">Special Deals</a></li>
 			<li><a href="anime.php" id="niche-item-tab">Anime</a></li>
 			<li><a href="books.php" id="niche-item-tab">Books</a></li>
@@ -82,7 +82,7 @@
 		}
 		
 		$viewItems = ($pageIndex * 15) . "," . ($pageIndex + 15); //get 15 items from the current page
-		$query = "SELECT * FROM games ORDER by id DESC LIMIT " . $viewItems;
+		$query = "SELECT * FROM game ORDER by id DESC LIMIT " . $viewItems;
 		$result = mysqli_query($link, $query);
 		//iterate through the niche
 		while($row = mysqli_fetch_array($result)) {
@@ -98,10 +98,10 @@
 				echo '
 				<li class="collection-item avatar" style="margin-top: 10px">
 				<div class="row">
-					<div class="col s12 m3">
+					<div class="col s12 m12 l3">
 					  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
 					</div>
-					<div class="col s12 m9">
+					<div class="col s12 m12 l9">
 					  <p><b>'.$itemName.'</b></p>
 					  <p style="color: green;">$'.$Price.' USD</p>
 					  Quantity: <input id="quantityText'.$itemId.'" style="width: 50px; height: 25px;" value="1" placeholder="1" type="number" min="1" onkeypress="return event.charCode > 48">

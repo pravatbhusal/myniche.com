@@ -85,10 +85,10 @@
 						echo '
 						<li id="item_'.$i.'" data-itemName='.$item.' data-itemQuantity='.$quantity.' data-itemPrice='.$Price.' class="collection-item avatar" style="margin-top: 10px">
 						<div class="row">
-							<div class="col s12 m3">
+							<div class="col s12 m12 l3">
 							  <i><img class="materialboxed" src="'.$itemIcon.'" style="width: 150px; height: 150px; border-radius: 25px;"></i>
 							</div>
-							<div class="col s12 m9">
+							<div class="col s12 m12 l9">
 							  <p><b>'.$itemName.'</b><span style="color: purple"> x '.$quantity.'</span></p>
 							  <p style="color: green;">$'.$Price.' USD</p>
 							  <p><a onclick="removeCart('.$i.')" class="waves-effect waves-light btn" style="background: #d32f2f;">Remove</a></p>
