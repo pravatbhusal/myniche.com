@@ -135,7 +135,9 @@
 				<input type="hidden" name="cmd" value="_cart">
 				<input type="hidden" name="upload" value="1">
 				<input type="hidden" name="business" value="'.$adminEmail.'">
-				<h4 style="color: green; display: inline; margin-left: 10px;" id="totalPrice" data-totalPrice="'.$totalPrice.'">Total: $'.$totalPrice.' USD + shipping</h4>
+				<h4 style="color: green; display: inline; margin-left: 10px;" id="totalPrice" data-totalPrice="'.$totalPrice.'">$'.$totalPrice.' USD</h4>
+				<br>
+				<label>Shipping fees may apply</label>
 				</form>
 				';
 			}
@@ -196,7 +198,6 @@
 			
 		function removeCart(itemNumber) {
 			var item = document.getElementById("item_" + itemNumber);
-			var paypalButton = document.getElementById("paypalBTN");
 			var itemName = item.getAttribute("data-itemName");
 			var itemQuantity = item.getAttribute("data-itemQuantity");
 			var itemPrice = item.getAttribute("data-itemPrice");
@@ -208,7 +209,7 @@
 			var totalPriceText = document.getElementById("totalPrice");
 			var totalPrice = totalPriceText.getAttribute("data-totalPrice");
 			totalPrice -= itemPrice * itemQuantity;
-			document.getElementById("totalPrice").innerHTML = "Total: $" + totalPrice + " USD + shipping";
+			document.getElementById("totalPrice").innerHTML = "$" + totalPrice + " USD";
 			document.getElementById("totalPrice").setAttribute("data-totalPrice", totalPrice);
 			
 			//get number of cart items within the browser
@@ -229,8 +230,8 @@
 				var node = document.createTextNode("No items in the checkout...");
 				emptyParagraph.appendChild(node);
 				container.appendChild(emptyParagraph);
-				paypalButton.parentNode.removeChild(paypalButton); //remove the paypal button
-				totalPriceText.parentNode.removeChild(totalPriceText); //remove the total price text
+				//remove the form
+				document.getElementById("paypalForm").parentNode.removeChild(document.getElementById("paypalForm"));
 			}
 		}
 	</script>

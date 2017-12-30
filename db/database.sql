@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2017 at 03:08 AM
+-- Generation Time: Dec 30, 2017 at 05:32 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `anime` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,7 +45,7 @@ CREATE TABLE `anime` (
 CREATE TABLE `books` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -59,7 +59,7 @@ CREATE TABLE `books` (
 CREATE TABLE `deals` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -73,7 +73,7 @@ CREATE TABLE `deals` (
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -87,7 +87,7 @@ CREATE TABLE `games` (
 CREATE TABLE `media` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -101,7 +101,7 @@ CREATE TABLE `media` (
 CREATE TABLE `school` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -115,7 +115,7 @@ CREATE TABLE `school` (
 CREATE TABLE `sports` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -129,7 +129,7 @@ CREATE TABLE `sports` (
 CREATE TABLE `toys` (
   `id` int(11) NOT NULL,
   `Item_Name` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
+  `Price` varchar(255) NOT NULL,
   `Item_Description` text NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -143,7 +143,7 @@ CREATE TABLE `toys` (
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
   `Customer_Email` varchar(255) NOT NULL,
-  `Gross_Amount` decimal(10,0) NOT NULL,
+  `Gross_Amount` varchar(255) NOT NULL,
   `Payment_Date` text NOT NULL,
   `Items_Purchased` text NOT NULL,
   `Items_Quantities` text NOT NULL,

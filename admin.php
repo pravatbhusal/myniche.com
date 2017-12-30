@@ -37,7 +37,7 @@
 						  <option value="deals">Deals</option>
 						</select>
 						<input required name="itemName" class="input-field col s12 m12 l12" type="text"  placeholder="Item Name" style="width: 500px;"></input>
-						<input required name="itemPrice" class="input-field col s12 m12 l12" placeholder="Price in USD" style="width: 200px;" type="number" min="1" onkeypress="return event.charCode > 48"></input>
+						<input required name="itemPrice" class="input-field col s12 m12 l12" placeholder="Price in USD" style="width: 200px;" min="1" onkeypress="return isNumberKey(event)"></input>
 						<textarea required id="itemDescription" name="itemDescription" style="width: 500px;" placeholder="Item Description" class="materialize-textarea input-field col s12 m12 l12"></textarea>
 						<h6 class="input-field col s12 m12 l3">Picture File:</h6>
 						<input required type="file" id="itemPicture" name="itemPicture" accept="image/*" class="input-field col s12 m12 l6">
@@ -129,5 +129,15 @@
 		//modal, text editor settings
 		$('.modal').modal();
 		$('#itemDescription').trigger('autoresize');
+		
+		function isNumberKey(evt)
+		{
+			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if (charCode != 46 && charCode > 31 
+			&& (charCode < 48 || charCode > 57))
+			 return false;
+
+			return true;
+		}
 	</script>
 </html>
