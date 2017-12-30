@@ -11,6 +11,18 @@
 		<!--jquery, materializejs-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+		<script>
+		//javascript is above here so that the php code can read the newItem() function
+			var items = new Array();
+			//records new item values into an array
+			function newItem(itemNumber) {
+				var item = document.getElementById("item_" + itemNumber);
+				var itemName = item.getAttribute("data-itemName");
+				var itemQuantity = item.getAttribute("data-itemQuantity");
+				var itemPrice = item.getAttribute("data-itemPrice");
+				items.push({number: itemNumber, name: itemName, quantity: itemQuantity, price: itemPrice});
+			}
+		</script>
 		
 		<meta charset="utf-8"> 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
@@ -99,6 +111,11 @@
 							</div>
 						</div>
 						</li>'; 
+						
+						echo '<script type="text/javascript">',
+							 'newItem('.$i.');',
+							 '</script>';
+							 
 					$containsItems = true;
 					$totalPrice += $Price * $quantity;
 					$i++;
@@ -111,10 +128,15 @@
 				echo '<h5>Your cart is empty!</h5>';	
 			} else {
 				echo '
-				<button id="paypalBTN" style="float: left;" class="btn waves-effect waves-light" type="submit" name="action">PayPal
+				<form id="paypalForm" method="POST" action="https://www.paypal.com/cgi-bin/webscr">
+				<button id="paypalBTN" onclick="paypalCheckOut('.$shippingCost.')" style="float: left;" class="btn waves-effect waves-light" value="PayPal">Purchase
 					<i class="material-icons right">arrow_forward</i>
 				</button>
-				<h4 style="color: green; display: inline; margin-left: 10px;" id="totalPrice" data-totalPrice="'.$totalPrice.'">Total: $'.$totalPrice.' USD</h4>
+				<input type="hidden" name="cmd" value="_cart">
+				<input type="hidden" name="upload" value="1">
+				<input type="hidden" name="business" value="'.$adminEmail.'">
+				<h4 style="color: green; display: inline; margin-left: 10px;" id="totalPrice" data-totalPrice="'.$totalPrice.'">Total: $'.$totalPrice.' USD + shipping</h4>
+				</form>
 				';
 			}
 		?>
@@ -156,6 +178,17 @@
 		$('.modal').modal();
 		$(".button-collapse").sideNav();
 		
+		function paypalCheckOut(shippingCost) {
+			//add the paypal form information based on the number of items in the array
+			for (var i = 0; i < items.length; i ++) {						
+				document.getElementById("paypalForm").innerHTML += '<input form="paypalForm" type="hidden" name="item_name_' + (i + 1) + '" value="' + items[i].name + '">';
+				document.getElementById("paypalForm").innerHTML += '<input form="paypalForm" type="hidden" name="amount_' + (i + 1) + '" value="' + items[i].price + '">';
+				document.getElementById("paypalForm").innerHTML += '<input form="paypalForm" type="hidden" name="quantity_' + (i + 1) + '" value="' + items[i].quantity + '">';
+				document.getElementById("paypalForm").innerHTML += '<input form="paypalForm" type="hidden" name="shipping_' + (i + 1) + '" value="' + shippingCost + '">';
+			}
+			document.getElementById('paypalForm').submit(); //submit the form
+		}
+		
 		//deletes a cookie based on the name
 		function delete_cookie( name ) {
 			document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -169,12 +202,13 @@
 			var itemPrice = item.getAttribute("data-itemPrice");
 			delete_cookie(itemName);
 			item.parentNode.removeChild(item); //remove the item
+			items.splice(itemNumber, 1); //removes the item from the items array for PayPal checkout
 			
 			//update the total price
 			var totalPriceText = document.getElementById("totalPrice");
 			var totalPrice = totalPriceText.getAttribute("data-totalPrice");
 			totalPrice -= itemPrice * itemQuantity;
-			document.getElementById("totalPrice").innerHTML = "Total: $" + totalPrice + " USD";
+			document.getElementById("totalPrice").innerHTML = "Total: $" + totalPrice + " USD + shipping";
 			document.getElementById("totalPrice").setAttribute("data-totalPrice", totalPrice);
 			
 			//get number of cart items within the browser
