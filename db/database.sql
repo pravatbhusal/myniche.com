@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2017 at 03:05 AM
+-- Generation Time: Dec 30, 2017 at 03:08 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -141,6 +141,7 @@ CREATE TABLE `toys` (
 --
 
 CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
   `Customer_Email` varchar(255) NOT NULL,
   `Gross_Amount` decimal(10,0) NOT NULL,
   `Payment_Date` text NOT NULL,
@@ -202,6 +203,12 @@ ALTER TABLE `toys`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -251,6 +258,12 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `toys`
 --
 ALTER TABLE `toys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
