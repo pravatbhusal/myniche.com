@@ -36,9 +36,9 @@
 						  <option value="games">Games</option>
 						  <option value="deals">Deals</option>
 						</select>
-						<input required name="itemName" class="input-field col s12 m12 l12" type="text"  placeholder="Item Name" style="width: 500px;"></input>
+						<input required name="itemName" class="input-field col s12 m12 l12" type="text"  placeholder="Item Name" style="width: 600px;"></input>
 						<input required name="itemPrice" class="input-field col s12 m12 l12" placeholder="Price in USD" style="width: 200px;" min="1" onkeypress="return isNumberKey(event)"></input>
-						<textarea required id="itemDescription" name="itemDescription" style="width: 500px;" placeholder="Item Description" class="materialize-textarea input-field col s12 m12 l12"></textarea>
+						<textarea required id="itemDescription" name="itemDescription" style="width: 600px;" placeholder="Item Description" class="materialize-textarea input-field col s12 m12 l12"></textarea>
 						<h6 class="input-field col s12 m12 l3">Picture File:</h6>
 						<input required type="file" id="itemPicture" name="itemPicture" accept="image/*" class="input-field col s12 m12 l6">
 						<button type="submit" class="btn input-field col s12 m12 l12">Upload</button>
