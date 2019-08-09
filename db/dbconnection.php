@@ -11,4 +11,3 @@ $adminPassword = "hidden";
 $shippingCost = 1;
 
 $link = mysqli_connect($host, $sqluser, $sqlpassword, $dbusername);
-?>

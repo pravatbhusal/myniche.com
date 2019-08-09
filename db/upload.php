@@ -12,35 +12,31 @@ $icon .= preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $_FILES['itemPicture']['name']
 
 //add the item into the database
 $query = "INSERT INTO $Niche_Type (Item_Name, Price, Item_Description, icon) VALUES('$Item_Name', '$Item_Price', '$Item_Description', '$icon')";
-if(mysqli_query($link, $query)) {
-	header("refresh:10;url=$website");
-	echo '<h2 style="color:green">Success, the item '.$Item_Name.' was uploaded into the file system!</h2>';
-	echo 'Redirecting in 10 seconds...';
+if (mysqli_query($link, $query)) {
+    header("refresh:10;url=$website");
+    echo '<h2 style="color:green">Success, the item '.$Item_Name.' was uploaded into the file system!</h2>';
+    echo 'Redirecting in 10 seconds...';
 } else {
-	header("refresh:10;url=$website");
-	echo '<h2 style="color:red">Error connecting to the database...</h2>';
-	echo 'Redirecting in 10 seconds...';
-	exit;
+    header("refresh:10;url=$website");
+    echo '<h2 style="color:red">Error connecting to the database...</h2>';
+    echo 'Redirecting in 10 seconds...';
+    exit;
 }
 
 //upload the icon into the file directory
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-  //uploading icon
-  if (is_uploaded_file($_FILES['itemPicture']['tmp_name'])) 
-  { 
-  	$upload_file_name = $unique_hash;
- 
-  	//replace any non-alpha-numeric cracters in the file name
-  	$upload_file_name .= preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $_FILES['itemPicture']['name']);
- 
-    //Save the file
-    $dest=__DIR__.'/icons/'.$Niche_Type.'/'.$upload_file_name;
-    if (move_uploaded_file($_FILES['itemPicture']['tmp_name'], $dest)) 
-    {
-    	//success
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //uploading icon
+    if (is_uploaded_file($_FILES['itemPicture']['tmp_name'])) {
+        $upload_file_name = $unique_hash;
+
+        //replace any non-alpha-numeric cracters in the file name
+        $upload_file_name .= preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $_FILES['itemPicture']['name']);
+
+        //Save the file
+        $dest=__DIR__.'/icons/'.$Niche_Type.'/'.$upload_file_name;
+        if (move_uploaded_file($_FILES['itemPicture']['tmp_name'], $dest)) {
+            //success
+        }
     }
-  }
 }
 exit;
-?>

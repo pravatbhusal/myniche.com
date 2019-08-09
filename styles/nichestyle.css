@@ -1,56 +1,68 @@
 /*nav elements*/
 #nav-selector {
-	background: black;
-	opacity: 0.8;
+  background: black;
+  opacity: 0.8;
 }
+
 #website-logo {
-	transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-#website-logo:hover { 
-	transition: all 0.3s ease;
-    color: #bdbdbd;
+
+#website-logo:hover {
+  transition: all 0.3s ease;
+  color: #bdbdbd;
 }
+
 #tab-items {
-	margin-right: 100px;
+  margin-right: 100px;
 }
+
 #special-deals-tab {
-	color: #f8bbd0;
+  color: #f8bbd0;
 }
+
 #cart-number {
-	color: white;
+  color: white;
 }
 
 /*body elements*/
 body {
-     display: flex;
-     min-height: 100vh;
-     flex-direction: column;
- }
-main {
-     flex: 1 0 auto;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
- 
+
+main {
+  flex: 1 0 auto;
+}
+
 /*footer elements*/
 #footer-header-text {
-	color: #323232;
-	font-size: 15px;
-	font-weight: bold;
+  color: #323232;
+  font-size: 15px;
+  font-weight: bold;
 }
+
 #footer-sub-text {
-	color: #323232;
-	font-size: 12px;
+  color: #323232;
+  font-size: 12px;
 }
+
 #footer-page {
-	background-color: #F2F2F2;
+  background-color: #F2F2F2;
 }
+
 #footer-trademark {
-	background-color: #F2F2F2;
+  background-color: #F2F2F2;
 }
 
 /*media queries*/
-@media only screen and (max-width: 767px) {
-}
+@media only screen and (max-width: 767px) {}
+
 @media only screen and (min-width: 768px) {
-    /* For desktop: */
-    #website-logo {margin-left: 125px;}
+
+  /* For desktop: */
+  #website-logo {
+    margin-left: 125px;
+  }
 }
